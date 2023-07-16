@@ -1,42 +1,23 @@
-let targets = JSON.parse(localStorage.getItem("targetsKey")); // Traemos el array de jugadores desde el local storage
+let targets = JSON.parse(localStorage.getItem("targetsKey")); 
 
-let aliveTargets = targets; // recibimos el array de jugadores y hacemos un clon
+let aliveTargets = targets;
 
 let casualties = [];
 
 let killedTarget = "";
 
-// selecciona un indice aleatorio dentro del array
-
 function killTarget() {
   if (aliveTargets.length > 0) {
-    //si la longitud del array es mayor a 0 entonces pasa lo siguiente
-
-    let randomIndex = 0 + Math.floor(Math.random() * aliveTargets.length); //generar un numero entero desde 0 hasta la longitud del array
-
+    let randomIndex = 0 + Math.floor(Math.random() * aliveTargets.length); 
     let selectedTarget = aliveTargets[randomIndex].targetName;
-
     killedTarget = aliveTargets[randomIndex].targetName;
-
-    console.log(selectedTarget); //console log del jugador seleccionado
-
-    casualties.push(aliveTargets[randomIndex]); // enviamos al jugador seleccionado a la lsita de muertos
-
-    aliveTargets.splice(randomIndex, 1); // eliminar al jugador seleccionado de la lista de vivos
-
-    console.log(aliveTargets); // console.log   de lista de vivos
-
-    //soloKill(selectedTarget)
-
-    // targetPositioning()
-    // playGif()
-    // setTimeout(esonder,900)
+    casualties.push(aliveTargets[randomIndex]); 
+    aliveTargets.splice(randomIndex, 1); 
     return selectedTarget;
   } else {
-    // si la condición anterior no se cumple entonces el array de vivos está vacio
     // gameOver();
   }
-}
+};
 
 const killButton = document.getElementById("kill");
 killButton.addEventListener("click", animationAndPopUP);
@@ -45,7 +26,7 @@ let dyingScream = new Audio("../assets/sounds/Sounds/wilhem_dead.mp3")
 
 function animationAndPopUP() {
   if (aliveTargets.length > 0) {
-    setTimeout(soloKill, 1700, killedTarget);
+    setTimeout(casualtyNotice, 1700, killedTarget);
     open.classList.remove('vibrate_kill')
     dyingScream.play();
     targetPositioning();
@@ -56,59 +37,54 @@ function animationAndPopUP() {
     gameOver();
     killButton.classList.add('shadow')
   }
-}
+};
 
-const nextContainer = document.getElementById("nextContainer");
-const nextButton = document.getElementById("nextButton");
+const nextButtonContainer = document.getElementById("next_button_container");
+const nextButton = document.getElementById("next_button");
 
 nextButton.addEventListener("click", nextTarget);
 function nextTarget() {
   targetImg.classList.remove("shadow");
   targetImg.classList.add("transleft");
-  nextContainer.classList.remove("block_next");
-  nextButton.classList.add("waitingNext");
+  nextButtonContainer.classList.remove("block_next");
+  nextButton.classList.add("button_await");
   targetImg.classList.remove("transdown");
   let selectedTarget = killTarget();
   targetExplosionGif(false, selectedTarget);
   open.classList.add('vibrate_kill')
-}
+};
 
-//ONE CODER IS DEAD
+function casualtyNotice(casualtyName) {
+  const modalContainer = document.getElementById("modal_container");
+  const continueButton = document.getElementById("continue_button");
+  const killedTargetAlert = document.getElementById("killed_target_alert");
+  const listButton = document.getElementById("list_button");
 
-function soloKill(nameKilled) {
-  const modal_container = document.getElementById("modal_container");
-  const btnNextKill = document.getElementById("nextKill");
-  const killedTargetAlert = document.getElementById("killedTargetAlert");
-  const btnList = document.getElementById("list");
+  listButton.innerHTML = "";
+  killedTargetAlert.innerHTML = `${casualtyName} is dead`;
 
-  // const open = document.getElementById('kill');
-  btnList.innerHTML = "";
-  killedTargetAlert.innerHTML = `${nameKilled} is dead`;
-
-  btnNextKill.addEventListener("click", () => {
-    modal_container.classList.remove("show");
+  continueButton.addEventListener("click", () => {
+    modalContainer.classList.remove("show");
     targetImg.classList.add("shadow");
-    nextButton.classList.remove("waitingNext");
-    nextContainer.classList.add("block_next");
+    nextButton.classList.remove("button_await");
+    nextButtonContainer.classList.add("block_next");
   });
 
-  modal_container.classList.add("show");
-}
+  modalContainer.classList.add("show");
+};
 
-//ALL CODERS DEAD POPUP
-
-  const removeButtonContinue = document.getElementById("nextKill");
+  const removeButtonContinue = document.getElementById("continue_button");
   const open = document.getElementById("kill");
-  const modal_container = document.getElementById("modal_container");
+  const modalContainer = document.getElementById("modal_container");
   const close = document.getElementById("close");
   const containerButtons = document.getElementById("container_buttons");
 function gameOver() {
   console.log("aquí aparece el pupup")
   function showModal (){
-      document.getElementById("killedTargetAlert").innerHTML =
+      document.getElementById("killed_target_alert").innerHTML =
         "All targets are dead<br/><br/>GAME OVER";
       removeButtonContinue.innerHTML = "";
-      modal_container.classList.add("show");
+      modalContainer.classList.add("show");
   }
   setTimeout(showModal,2000)
   shootingGif()
@@ -117,41 +93,35 @@ function gameOver() {
   containerButtons.innerHTML = `<a href="./list.html" id="list">            
     <img src="../assets/svg/list.svg" alt="" class="btcontinue">
   </a>`;
-}
-
+};
 
 const targetImg = document.getElementById("target");
 
 function targetPositioning() {
   targetImg.classList.remove("transleft");
   targetImg.classList.add("transdown");
-}
+};
 
 const gunContainer = document.getElementById("gun_container");
-let shootSound = new Audio("../assets/sounds/Sounds/shootgun_shoot_1.mp3");
-let chargeSound = new Audio("../assets/sounds/Sounds/reload_1.mp3");
+let shootingSound = new Audio("../assets/sounds/Sounds/shootgun_shoot_1.mp3");
+let shotgunReloadSound = new Audio("../assets/sounds/Sounds/reload_1.mp3");
 
 function shootingGif() {
   gunContainer.innerHTML = `<img src="../assets/img/gunGif.gif" alt="gun" class="gif_gun">`;
   setTimeout(shooting, 1700);
-  shootSound.play();
-  setTimeout(chargePLay, 500);
-}
+  shootingSound.play();
+  setTimeout(playShotgunReloadSound, 500);
+};
 
-chargeSound.play();
+shotgunReloadSound.play();
 
-function chargePLay() {
-  chargeSound.play();
-}
+function playShotgunReloadSound() {
+  shotgunReloadSound.play();
+};
+
 function shooting() {
   gunContainer.innerHTML = `<img src="../assets/img/maskgroup.png" alt="gun" class="img_gun">`;
-}
-
-/* function esonder() {
- document.getElementById("player").style.visibility = "hidden";
-} */
-
-// funcion para cambiar de giffs del player
+};
 
 const targetGif = document.getElementById("target");
 
@@ -161,4 +131,4 @@ function targetExplosionGif(instruction, name) {
   } else {
     targetGif.innerHTML = `<img class="target"  src="../assets/img/walking-player.gif" alt="target" id="target_img"><h4>${name}</h4>`;
   }
-}
+};
