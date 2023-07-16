@@ -1,10 +1,4 @@
-// let playersStorage = JSON.parse(localStorage.getItem("playersKey")); // Traemos el array de jugadores desde el local storage (puede estar lleno o vacío)
-// DATOS
 let targets = [];
-
-// LÓGICA
-
-// Añadir envento a todos los botones para eliminar jugadores
 
 const deleteButtonHandler = (e) => {
   let idToDelete = e.target.id;
@@ -12,8 +6,6 @@ const deleteButtonHandler = (e) => {
   saveToLocalStorage(targets);
   displayTargetsList();
 };
-
-// Añadir jugador, creando un nuevo objeto y enviándolo mediante .push al array de players
 
 let addTargetButton = document.getElementById("addTarget");
 
@@ -41,7 +33,6 @@ addTargetButton.addEventListener("click", (e) => {
   saveToLocalStorage(targets);
 });
 
-// doom
 const displayTargetsList = () => {
   let htmlTargets = ``;
 
