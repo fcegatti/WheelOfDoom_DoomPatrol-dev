@@ -26,7 +26,7 @@ let dyingScream = new Audio("../assets/sounds/Sounds/wilhem_dead.mp3")
 
 function animationAndPopUP() {
   if (aliveTargets.length > 0) {
-    setTimeout(soloKill, 1700, killedTarget);
+    setTimeout(casualtyNotice, 1700, killedTarget);
     open.classList.remove('vibrate_kill')
     dyingScream.play();
     targetPositioning();
@@ -47,29 +47,28 @@ function nextTarget() {
   targetImg.classList.remove("shadow");
   targetImg.classList.add("transleft");
   nextButtonContainer.classList.remove("block_next");
-  nextButton.classList.add("waitingNext");
+  nextButton.classList.add("button_await");
   targetImg.classList.remove("transdown");
   let selectedTarget = killTarget();
   targetExplosionGif(false, selectedTarget);
   open.classList.add('vibrate_kill')
 }
 
-//ONE CODER IS DEAD
 
-function soloKill(nameKilled) {
+
+function casualtyNotice(casualtyName) {
   const modal_container = document.getElementById("modal_container");
-  const btnNextKill = document.getElementById("nextKill");
-  const killedTargetAlert = document.getElementById("killedTargetAlert");
-  const btnList = document.getElementById("list");
+  const continueButton = document.getElementById("continue_button");
+  const killedTargetAlert = document.getElementById("killed_target_alert");
+  const listButton = document.getElementById("list_button");
 
-  // const open = document.getElementById('kill');
-  btnList.innerHTML = "";
-  killedTargetAlert.innerHTML = `${nameKilled} is dead`;
+  listButton.innerHTML = "";
+  killedTargetAlert.innerHTML = `${casualtyName} is dead`;
 
-  btnNextKill.addEventListener("click", () => {
+  continueButton.addEventListener("click", () => {
     modal_container.classList.remove("show");
     targetImg.classList.add("shadow");
-    nextButton.classList.remove("waitingNext");
+    nextButton.classList.remove("button_await");
     nextButtonContainer.classList.add("block_next");
   });
 
@@ -78,7 +77,7 @@ function soloKill(nameKilled) {
 
 //ALL CODERS DEAD POPUP
 
-  const removeButtonContinue = document.getElementById("nextKill");
+  const removeButtonContinue = document.getElementById("continue_button");
   const open = document.getElementById("kill");
   const modal_container = document.getElementById("modal_container");
   const close = document.getElementById("close");
@@ -86,7 +85,7 @@ function soloKill(nameKilled) {
 function gameOver() {
   console.log("aquí aparece el pupup")
   function showModal (){
-      document.getElementById("killedTargetAlert").innerHTML =
+      document.getElementById("killed_target_alert").innerHTML =
         "All targets are dead<br/><br/>GAME OVER";
       removeButtonContinue.innerHTML = "";
       modal_container.classList.add("show");
