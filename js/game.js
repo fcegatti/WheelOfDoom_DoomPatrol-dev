@@ -1,39 +1,20 @@
-let targets = JSON.parse(localStorage.getItem("targetsKey")); // Traemos el array de jugadores desde el local storage
+let targets = JSON.parse(localStorage.getItem("targetsKey")); 
 
-let aliveTargets = targets; // recibimos el array de jugadores y hacemos un clon
+let aliveTargets = targets;
 
 let casualties = [];
 
 let killedTarget = "";
 
-// selecciona un indice aleatorio dentro del array
-
 function killTarget() {
   if (aliveTargets.length > 0) {
-    //si la longitud del array es mayor a 0 entonces pasa lo siguiente
-
-    let randomIndex = 0 + Math.floor(Math.random() * aliveTargets.length); //generar un numero entero desde 0 hasta la longitud del array
-
+    let randomIndex = 0 + Math.floor(Math.random() * aliveTargets.length); 
     let selectedTarget = aliveTargets[randomIndex].targetName;
-
     killedTarget = aliveTargets[randomIndex].targetName;
-
-    console.log(selectedTarget); //console log del jugador seleccionado
-
-    casualties.push(aliveTargets[randomIndex]); // enviamos al jugador seleccionado a la lsita de muertos
-
-    aliveTargets.splice(randomIndex, 1); // eliminar al jugador seleccionado de la lista de vivos
-
-    console.log(aliveTargets); // console.log   de lista de vivos
-
-    //soloKill(selectedTarget)
-
-    // targetPositioning()
-    // playGif()
-    // setTimeout(esonder,900)
+    casualties.push(aliveTargets[randomIndex]); 
+    aliveTargets.splice(randomIndex, 1); 
     return selectedTarget;
   } else {
-    // si la condición anterior no se cumple entonces el array de vivos está vacio
     // gameOver();
   }
 }
@@ -58,14 +39,14 @@ function animationAndPopUP() {
   }
 }
 
-const nextContainer = document.getElementById("nextContainer");
-const nextButton = document.getElementById("nextButton");
+const nextButtonContainer = document.getElementById("next_button_container");
+const nextButton = document.getElementById("next_button");
 
 nextButton.addEventListener("click", nextTarget);
 function nextTarget() {
   targetImg.classList.remove("shadow");
   targetImg.classList.add("transleft");
-  nextContainer.classList.remove("block_next");
+  nextButtonContainer.classList.remove("block_next");
   nextButton.classList.add("waitingNext");
   targetImg.classList.remove("transdown");
   let selectedTarget = killTarget();
@@ -89,7 +70,7 @@ function soloKill(nameKilled) {
     modal_container.classList.remove("show");
     targetImg.classList.add("shadow");
     nextButton.classList.remove("waitingNext");
-    nextContainer.classList.add("block_next");
+    nextButtonContainer.classList.add("block_next");
   });
 
   modal_container.classList.add("show");
