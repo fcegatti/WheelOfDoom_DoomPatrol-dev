@@ -17,7 +17,7 @@ function killTarget() {
   } else {
     // gameOver();
   }
-}
+};
 
 const killButton = document.getElementById("kill");
 killButton.addEventListener("click", animationAndPopUP);
@@ -37,7 +37,7 @@ function animationAndPopUP() {
     gameOver();
     killButton.classList.add('shadow')
   }
-}
+};
 
 const nextButtonContainer = document.getElementById("next_button_container");
 const nextButton = document.getElementById("next_button");
@@ -52,12 +52,10 @@ function nextTarget() {
   let selectedTarget = killTarget();
   targetExplosionGif(false, selectedTarget);
   open.classList.add('vibrate_kill')
-}
-
-
+};
 
 function casualtyNotice(casualtyName) {
-  const modal_container = document.getElementById("modal_container");
+  const modalContainer = document.getElementById("modal_container");
   const continueButton = document.getElementById("continue_button");
   const killedTargetAlert = document.getElementById("killed_target_alert");
   const listButton = document.getElementById("list_button");
@@ -66,20 +64,18 @@ function casualtyNotice(casualtyName) {
   killedTargetAlert.innerHTML = `${casualtyName} is dead`;
 
   continueButton.addEventListener("click", () => {
-    modal_container.classList.remove("show");
+    modalContainer.classList.remove("show");
     targetImg.classList.add("shadow");
     nextButton.classList.remove("button_await");
     nextButtonContainer.classList.add("block_next");
   });
 
-  modal_container.classList.add("show");
-}
-
-//ALL CODERS DEAD POPUP
+  modalContainer.classList.add("show");
+};
 
   const removeButtonContinue = document.getElementById("continue_button");
   const open = document.getElementById("kill");
-  const modal_container = document.getElementById("modal_container");
+  const modalContainer = document.getElementById("modal_container");
   const close = document.getElementById("close");
   const containerButtons = document.getElementById("container_buttons");
 function gameOver() {
@@ -88,7 +84,7 @@ function gameOver() {
       document.getElementById("killed_target_alert").innerHTML =
         "All targets are dead<br/><br/>GAME OVER";
       removeButtonContinue.innerHTML = "";
-      modal_container.classList.add("show");
+      modalContainer.classList.add("show");
   }
   setTimeout(showModal,2000)
   shootingGif()
@@ -97,41 +93,35 @@ function gameOver() {
   containerButtons.innerHTML = `<a href="./list.html" id="list">            
     <img src="../assets/svg/list.svg" alt="" class="btcontinue">
   </a>`;
-}
-
+};
 
 const targetImg = document.getElementById("target");
 
 function targetPositioning() {
   targetImg.classList.remove("transleft");
   targetImg.classList.add("transdown");
-}
+};
 
 const gunContainer = document.getElementById("gun_container");
-let shootSound = new Audio("../assets/sounds/Sounds/shootgun_shoot_1.mp3");
-let chargeSound = new Audio("../assets/sounds/Sounds/reload_1.mp3");
+let shootingSound = new Audio("../assets/sounds/Sounds/shootgun_shoot_1.mp3");
+let shotgunReloadSound = new Audio("../assets/sounds/Sounds/reload_1.mp3");
 
 function shootingGif() {
   gunContainer.innerHTML = `<img src="../assets/img/gunGif.gif" alt="gun" class="gif_gun">`;
   setTimeout(shooting, 1700);
-  shootSound.play();
-  setTimeout(chargePLay, 500);
-}
+  shootingSound.play();
+  setTimeout(playShotgunReloadSound, 500);
+};
 
-chargeSound.play();
+shotgunReloadSound.play();
 
-function chargePLay() {
-  chargeSound.play();
-}
+function playShotgunReloadSound() {
+  shotgunReloadSound.play();
+};
+
 function shooting() {
   gunContainer.innerHTML = `<img src="../assets/img/maskgroup.png" alt="gun" class="img_gun">`;
-}
-
-/* function esonder() {
- document.getElementById("player").style.visibility = "hidden";
-} */
-
-// funcion para cambiar de giffs del player
+};
 
 const targetGif = document.getElementById("target");
 
@@ -141,4 +131,4 @@ function targetExplosionGif(instruction, name) {
   } else {
     targetGif.innerHTML = `<img class="target"  src="../assets/img/walking-player.gif" alt="target" id="target_img"><h4>${name}</h4>`;
   }
-}
+};
