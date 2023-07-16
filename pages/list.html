@@ -1,39 +1,10 @@
 <!DOCTYPE html>
-<html lang="en/es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- FontAwesome Link  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <!-- BootStrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-    />
-    <!-- RESET.CSS -->
-    <link rel="stylesheet" href="../reset_and_globals.css" />
-    <!-- CSS -->
-    <link rel="stylesheet" href="../style/list.css" />
-    <!-- RETRO FONT-GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <!-- ORBITRON FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
     <title>Wheel of Dom</title>
+
     <!-- FAVICONS -->
     <link rel="apple-touch-icon" sizes="57x57" href="../meta/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../meta/favicons/apple-icon-60x60.png">
@@ -52,7 +23,24 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    
+    <!-- FontAwesome Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <!-- BootStrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+    <!-- RETRO AND ORBITRON FONT-GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- RESET.CSS -->
+    <link rel="stylesheet" href="../reset_and_globals.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style/list.css" />
   </head>
+
   <body class="background_image">
     <header>
       <img src="../assets/img/logo_horizontal.svg" alt="logo" class="logo"/>
@@ -63,21 +51,21 @@
         <form class="form_list">
           <input
             type="text"
-            placeholder="Name player"
-            id="inputPlayer"
+            placeholder="Insert target name"
+            id="inputTarget"
           />
-          <button id="addPlayer">+</button>
+          <button id="addTarget">+</button>
         </form>
       </div>
       <div class="container_list">
         <h3 class="title_list">List of players</h3>
         <div class="container_players">
-          <ul class="list_of_players" id="listOfPlayers">
+          <ul class="list_of_players" id="targetsList">
           </ul>
         </div>
       </div>
-      <a href="" id="goPlay">
-        <img src="../assets/img/play.svg" class="btn_play" alt="play nutton" srcset="" />
+      <a href="" id="playButton">
+        <img src="../assets/img/play.svg" class="btn_play" alt="Play button" srcset="" />
       </a>
     </section>
     <script src="../js/javascript.js"></script>

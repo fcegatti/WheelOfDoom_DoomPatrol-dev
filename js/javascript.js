@@ -1,6 +1,6 @@
 // let playersStorage = JSON.parse(localStorage.getItem("playersKey")); // Traemos el array de jugadores desde el local storage (puede estar lleno o vacío)
 // DATOS
-let players = [];
+let targets = [];
 
 // LÓGICA
 
@@ -8,54 +8,54 @@ let players = [];
 
 const deleteButtonHandler = (e) => {
   let idToDelete = e.target.id;
-  players = players.filter((player) => player.id != idToDelete);
-  guardarEnStorage(players);
-  render();
+  targets = targets.filter((target) => target.id != idToDelete);
+  saveToLocalStorage(targets);
+  displayTargetsList();
 };
 
 // Añadir jugador, creando un nuevo objeto y enviándolo mediante .push al array de players
 
-let btnAddPlayer = document.getElementById("addPlayer");
+let addTargetButton = document.getElementById("addTarget");
 
-let soundAddPlayer = new Audio("../assets/sounds/Sounds/sonido_boton_1.mp3")
+let addTargetSound = new Audio("../assets/sounds/Sounds/sonido_boton_1.mp3")
 
-btnAddPlayer.addEventListener("click", (e) => {
+addTargetButton.addEventListener("click", (e) => {
   e.preventDefault();
-  let inputPlayer = document.getElementById("inputPlayer");
+  let inputTarget = document.getElementById("inputTarget");
   
-  let idNewPlayer = players.length;
+  let idNewTarget = targets.length;
 
-  let nameNewPlayer = inputPlayer.value;
-  if (inputPlayer.value == "") {
+  let nameNewTarget = inputTarget.value;
+  if (inputTarget.value == "") {
     alert("Please enter a valid name");
   } else {
-    players.push({
-      id: idNewPlayer,
-      playerName: nameNewPlayer,
+    targets.push({
+      id: idNewTarget,
+      targetName: nameNewTarget,
       isDead: false,
     });
   }
-  inputPlayer.value = "";
-  soundAddPlayer.play()
-  render();
-  guardarEnStorage(players);
+  inputTarget.value = "";
+  addTargetSound.play()
+  displayTargetsList();
+  saveToLocalStorage(targets);
 });
 
 // doom
-const render = () => {
-  let htmlPlayers = ``;
+const displayTargetsList = () => {
+  let htmlTargets = ``;
 
 
-  let listPlayers = document.getElementById("listOfPlayers");
+  let targetsList = document.getElementById("targetsList");
 
-  players.forEach(
-    (player) =>
-      (htmlPlayers += `<li class="item_list_player" >
-          <p class="player_name">${player.playerName}</p>
-          <i class="bi bi-trash-fill player_delete"id="${player.id}"></i>
+  targets.forEach(
+    (target) =>
+      (htmlTargets += `<li class="item_list_player" >
+          <p class="target_name">${target.targetName}</p>
+          <i class="bi bi-trash-fill player_delete"id="${target.id}"></i>
           </li>`)
   );
-  listPlayers.innerHTML = htmlPlayers;
+  targetsList.innerHTML = htmlTargets;
   addDeleteButton();
 };
 
@@ -67,26 +67,26 @@ const addDeleteButton = (e) => {
   );
 };
 
-render();
+displayTargetsList();
 
 
-function guardarEnStorage(object) {
-  let playersLocal = object;
+function saveToLocalStorage(object) {
+  let targetsLocal = object;
 
-  localStorage.setItem("playersKey", JSON.stringify(playersLocal));
+  localStorage.setItem("targetsKey", JSON.stringify(targetsLocal));
 }
 
-const Play = document.getElementById("goPlay");
+const playButton = document.getElementById("playButton");
 
-Play.addEventListener("click",(e) =>{
-  let players = JSON.parse(localStorage.getItem("playersKey"));
+const playButtonClickHandler = (e) => {
+  let targets = JSON.parse(localStorage.getItem("targetsKey"));
 
-  if(players.length > 1){
-    Play.href = "./game.html"
+  if(targets.length > 1) {
+    playButton.href = "./game.html"
   } 
   else{
-    alert("You need at least two players to start.")
-  }
+    alert("You need at least two targets to start.")
+  }  
+};
 
-  
-})
+playButton.addEventListener("click", playButtonClickHandler);

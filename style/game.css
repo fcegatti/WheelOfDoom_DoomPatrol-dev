@@ -91,7 +91,7 @@ body {
   z-index: -1;
 }
 
-.playerContainer {
+.target_container {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -100,7 +100,7 @@ body {
   height: 66vh;
 }
 
-.playerContainer h4 {
+.target_container h4 {
   position: absolute;
   color: white;
   font-weight: 800;
@@ -146,7 +146,7 @@ body {
   }
 }
 
-.player {
+.target {
   width: 100%;
   transform: scaleX(-1);
 }
@@ -278,7 +278,7 @@ body {
     width: 20vh;
     height: 21vh;
   }
-  .playerContainer {
+  .target_container {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -336,7 +336,7 @@ body {
       font-size: 2.3vh;
     }
   }
-  .playerContainer h4 {
+  .target_container h4 {
     color: white;
     font-weight: 800;
     font-size:2.6vh;
@@ -353,7 +353,7 @@ body {
     width: 15vh;
     height: 18vh;
   }
-  .playerContainer {
+  .target_container {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -434,7 +434,7 @@ body {
       font-size: 4vh;
     }
   }
-  .playerContainer h4 {
+  .target_container h4 {
     color: white;
     font-weight: 800;
     font-size:2.6vh;
