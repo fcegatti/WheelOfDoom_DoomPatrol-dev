@@ -102,12 +102,12 @@ function targetPositioning() {
   targetImg.classList.add("transdown");
 };
 
-const gunContainer = document.getElementById("gun_container");
+const shotgunContainer = document.getElementById("shotgun_container");
 let shootingSound = new Audio("../assets/sounds/Sounds/shootgun_shoot_1.mp3");
 let shotgunReloadSound = new Audio("../assets/sounds/Sounds/reload_1.mp3");
 
 function shootingGif() {
-  gunContainer.innerHTML = `<img src="../assets/img/gunGif.gif" alt="gun" class="gif_gun">`;
+  shotgunContainer.innerHTML = `<img src="../assets/img/gunGif.gif" alt="gun" class="gif_gun">`;
   setTimeout(shooting, 1700);
   shootingSound.play();
   setTimeout(playShotgunReloadSound, 500);
@@ -120,7 +120,7 @@ function playShotgunReloadSound() {
 };
 
 function shooting() {
-  gunContainer.innerHTML = `<img src="../assets/img/maskgroup.png" alt="gun" class="img_gun">`;
+  shotgunContainer.innerHTML = `<img src="../assets/img/maskgroup.png" alt="gun" class="img_gun">`;
 };
 
 const targetGif = document.getElementById("target");
